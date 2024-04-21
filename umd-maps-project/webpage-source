@@ -1,0 +1,50 @@
+import React, { useState } from 'react';
+import './source_style.css'; // Import your CSS file
+
+function Login() {
+    const [organization, setOrganization] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleOrganizationChange = (e) => {
+        setOrganization(e.target.value);
+    };
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Add your login logic here
+    };
+
+    return (
+        <div className="login-box">
+            <div className="login-header">
+                <header>Source Login</header>
+            </div>
+            <form onSubmit={handleSubmit}>
+                <div className="input-box">
+                    {/* Dropdown for organization selection */}
+                    <select className="input-field" value={organization} onChange={handleOrganizationChange}>
+                        <option value="" disabled>Select Organization</option>
+                        <option value="Yahentamitsi Dining Hall">Yahentamitsi Dining Hall</option>
+                        <option value="251 North Dining">251 North Dining</option>
+                        <option value="South Campus Dining hall">South Campus Dining hall</option>
+                    </select>
+                </div>
+                <div className="input-box">
+                    <input type="password" className="input-field" placeholder="Password" autoComplete="off" required value={password} onChange={handlePasswordChange} />
+                </div>
+                <div className="input-submit">
+                    <button type="submit" className="submit-btn">Sign In</button>
+                </div>
+            </form>
+            <div className="sign-up-link">
+                <p>Don't have an account? <a href="#">Sign Up</a></p>
+            </div>
+        </div>
+    );
+}
+
+export default Login;

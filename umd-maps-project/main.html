@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delivery Tracker</title>
+<!-- Include the Google Maps API -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBr0UNBZj7IT4d-hfSxKw3ca9p0zzVAUYM&libraries=places,directions&callback=initMap" async defer></script>
+<style>
+  /* General styles */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+  }
+
+  /* Header styles */
+  .header {
+    background-color: #FFD520;
+    color: black;
+    padding: 20px;
+    text-align: center;
+  }
+
+  /* Tab styles */
+  .tab {
+    overflow: hidden;
+    border-bottom: 2px solid #ccc;
+    background-color: #f1f1f1;
+  }
+
+  .button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #1beab6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+  .tab button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 16px;
+    border-radius: 5px;
+    margin: 5px;
+  }
+
+  .button:hover {
+  background-color: #13b38a;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+  .start-button {
+  margin-top: 20px;
+}
+
+.start-navigation-button {
+  margin-top: 10px;
+}
+
+  .tab button.active {
+    background-color: #ccc;
+  }
+
+  .tabcontent {
+    display: none;
+    padding: 20px;
+    border-top: none;
+  }
+
+  /* List styles */
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    margin-bottom: 10px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Map styles */
+  #map {
+    height: 300px;
+    width: 100%;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Delivery Tracker</h1>
+</div>
+
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'Pending')">Pending</button>
+  <button class="tablinks" onclick="openTab(event, 'Finished')">Finished</button>
+</div>
+
+
+
+<div id="Pending" class="tabcontent">
+  <h2>Pending Deliveries</h2>
+  <ul id="pendingList"></ul>
+</div>
+
+<div id="Finished" class="tabcontent">
+  <h2>Finished Deliveries</h2>
+  <ul id="finishedList"></ul>
+</div>
+
+<div id="map"></div>
+
+<!-- Include our JavaScript file -->
+<script src="delivery_tracker.js"></script>
+
+</body>
+</html>

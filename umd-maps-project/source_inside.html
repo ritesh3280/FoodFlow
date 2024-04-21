@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_source_inside.css">
+    <style>
+        /* Additional CSS for styling the "No file chosen" button and quantity input button */
+        .upload-button, .quantity-field {
+            background-color: #ffffff; /* White background */
+            color: #000000; /* Black text color */
+            padding: 15px 20px; /* Padding */
+            border: 1px solid #000000; /* Border */
+            border-radius: 30px; /* Oval shape */
+            cursor: pointer; /* Change cursor to pointer on hover */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition on hover */
+            display: inline-block; /* Display as inline-block */
+            margin-top: 20px;
+        }
+
+        .upload-button:hover, .quantity-field:hover {
+            background-color: #000000; /* Black background color on hover */
+            color: #ffffff; /* White text color on hover */
+        }
+
+        /* Style for the undo button */
+        .undo-button {
+            background-color: #FFD520; /* Red background */
+            color: black; /* White text color */
+            padding: 15px 20px; /* Padding */
+            border: none; /* Remove border */
+            border-radius: 30px; /* Oval shape */
+            cursor: pointer; /* Change cursor to pointer on hover */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition on hover */
+            display: inline-block; /* Display as inline-block */
+            margin-top: 20px;
+        }
+
+        .undo-button:hover {
+            background-color: #FFD520; /* Darker red background color on hover */
+        }
+    </style>
+    <title>Upload | Product</title>
+</head>
+<body>
+    <div class="upload-box">
+        <div class="upload-header">
+            <header>Upload Food Image</header>
+        </div>
+        <div class="input-box">
+            <!-- No file chosen button -->
+            <label for="fileInput" class="upload-button" id="noFileChosenButton">No File Chosen</label>
+            <!-- File input element -->
+            <input type="file" class="upload-field" id="fileInput" style="display: none;" onchange="showSelectedFile()">
+            <!-- Selected file text -->
+            <span id="selectedFile" style="display: none;"></span>
+        </div>
+        <div class="input-box">
+            <input type="number" class="quantity-field" id="quantity" placeholder="Quantity" autocomplete="off" required>
+        </div>
+        <div class="input-submit">
+            <a href="source_final.html"><button class="add-btn" style="text-decoration: none; color: black;">Add</a></button>
+            <!-- Undo button -->
+            <button class="undo-button" onclick="undoSelection()">Undo Selection</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var noFileChosenButton = document.getElementById('noFileChosenButton');
+            noFileChosenButton.style.display = 'inline-block'; // Show the "No file chosen" button initially
+        });
+
+        function showSelectedFile() {
+            var fileInput = document.getElementById('fileInput');
+            var selectedFile = document.getElementById('selectedFile');
+            var noFileChosenButton = document.getElementById('noFileChosenButton');
+            if (fileInput.files.length > 0) {
+                var fileName = fileInput.files[0].name; // Get the name of the selected file
+                selectedFile.textContent = "Selected File: " + fileName; // Update the selected file message
+                selectedFile.style.display = 'inline-block'; // Show the selected file message
+                fileInput.style.display = 'none'; // Hide the file input button
+                noFileChosenButton.style.display = 'none'; // Hide the "No file chosen" button
+            }
+        }
+
+        function undoSelection() {
+            var fileInput = document.getElementById('fileInput');
+            var selectedFile = document.getElementById('selectedFile');
+            var noFileChosenButton = document.getElementById('noFileChosenButton');
+            var quantityInput = document.getElementById('quantity');
+            
+            // Reset file input
+            fileInput.value = '';
+            fileInput.style.display = 'inline-block'; // Show the file input button
+            
+            // Reset selected file message
+            selectedFile.textContent = '';
+            selectedFile.style.display = 'none'; // Hide the selected file message
+            
+            // Reset quantity input
+            quantityInput.value = '';
+            
+            
+        }
+
+        document.getElementById("submit").addEventListener("click", function() {
+            var fileInput = document.getElementById('fileInput');
+            var quantityInput = document.getElementById('quantity');
+            var file = fileInput.files[0];
+            var quantity = quantityInput.value;
+            console.log("File:", file);
+            console.log("Quantity:", quantity);
+            fileInput.value = '';
+            quantityInput.value = '';
+            // You can add further processing here
+        });
+        function uploadImage() {
+    var fileInput = document.getElementById('fileInput');
+    var quantityInput = document.getElementById('quantity');
+    var file = fileInput.files[0];
+    var quantity = quantityInput.value;
+    
+    // Create a FormData object to send the file and quantity as form data
+    var formData = new FormData();
+    formData.append('file', file);
+    formData.append('quantity', quantity);
+    
+    // Send a POST request to the server with the FormData
+    fetch('/upload', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        // Handle the response from the server as needed
+        // Redirect to result page with food item and quantity
+        window.location.href = `/result_page?food_item=${data.food_item}&quantity=${quantity}`;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="source_style.css">
+    <title>Login | Source</title>
+</head>
+<body>
+    <div class="login-box">
+        <div class="login-header">
+            <header>Source Login</header>
+        </div>
+        
+        <div class="input-box">
+            <!-- Dropdown for organization selection -->
+            <select class="input-field" id="organization">
+                <option value="" disabled selected>Select Organization</option>
+                <option value="Yahentamitsi Dining Hall">Yahentamitsi Dining Hall</option>
+                <option value="251 North Dining">251 North Dining</option>
+                <option value="South Campus Dining hall">South Campus Dining hall</option>
+            </select>
+        </div>
+        <div class="input-box">
+            <input type="password" class="input-field" id="password" placeholder="Password" autocomplete="off" required>
+        </div>
+        <div class="input-submit">
+            <button class="submit-btn" id="submit">Sign In</button>
+        </div>
+    
+        <div class="sign-up-link">
+            <p>Don't have an account? <a href="#">Sign Up</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("submit").addEventListener("click", function() {
+            // Get the input values
+            var organizationInput = document.getElementById('organization').value;
+            var passwordInput = document.getElementById('password').value;
+            
+            // Check if organization is selected and password is entered
+            if (organizationInput && passwordInput) {
+                // Redirect to source_inside.html
+                window.location.href = "source_inside.html";
+            } else {
+                alert("Please select organization and enter password.");
+            }
+        });
+    </script>
+</body>
+</html>

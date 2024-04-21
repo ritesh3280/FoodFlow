@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Food Flow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <img src="umd_logo.png" alt="Logo" class="logo">
+    <div class="green-section"></div>
+    <div class="white-section"></div>
+    <div class="button-container">
+        <button id="sourceButton" class="source">SOURCE</button>
+        <button id = "receiverButton" class="receiver">RECEIVER</button>
+        <button id="distributorButton" class="distributor">DISTRIBUTOR</button>
+    </div>
+  </div>
+
+  <script>
+    // Add event listener to the "SOURCE" button
+    document.getElementById("sourceButton").addEventListener("click", function() {
+      // Navigate to the desired page upon clicking the button
+      window.location.href = "webpage_source.html";
+    });
+  </script>
+
+  <script>
+    document.getElementById("receiverButton").addEventListener("click", function(){
+        window.location.href = "webpage_receiver.html";
+        
+    });
+  </script>
+
+  <script>
+    document.getElementById("distributorButton").addEventListener("click", function(){
+        window.location.href = "webpage_distributor.html";
+      
+    });
+  </script>   
+</body>
+</html>
+</body>
+</html>
